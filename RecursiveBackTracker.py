@@ -1,7 +1,7 @@
 import turtle
+import numpy as np
 
-
-def draw_maze_box(width: int = 400, height: int = 400, wall_width: int = 4, drawing_speed: int = 0) -> None:
+def draw_maze_box(width: int = 400, height: int = 400, wall_width: int = 4, drawing_speed: int = 2) -> None:
     """
     :param width: The width of the maze
     :type width: int
@@ -38,4 +38,16 @@ def draw_maze_box(width: int = 400, height: int = 400, wall_width: int = 4, draw
 
 
 # Call the draw_maze_box function
-draw_maze_box(400, 400)
+#draw_maze_box(400, 400)
+
+def maze_maker(nr_rows: int, nr_cols: int) -> np.array:
+    maze = np.array((nr_rows, nr_cols)) # Create the maze
+    starting_vertex = (0, 0) # The position that the maze would start
+    stack = [] # Defining a stack to store vertecies in it
+    explored_vertices = set() # A set to make sure not to explore a vertex more than once
+    
+    current_vertex = starting_vertex
+    while True:
+        pass
+
+    
