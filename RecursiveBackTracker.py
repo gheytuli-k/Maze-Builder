@@ -58,12 +58,11 @@ def draw_maze_box(nr_rows: int, width: int = 400, height: int = 400, wall_width:
         maze_object.pendown()
         maze_object.forward(height)
 
-    turtle.Screen().exitonclick()  # Close the window by clicking on the screen
+    turtle.Screen().update() 
 
-
-# Call the draw_maze_box function
-draw_maze_box(30, 600, 600)
-
+def open_path(current_vertex, next_vertex):
+    # This function opens the path between two cells
+    pass
 
 def index_mapper(point: Tuple, col_size: int) -> int:
     """"
@@ -119,6 +118,9 @@ def maze_maker(nr_cols_rows: int, starting_vertex: Tuple = (0, 0)) -> np.array:
             # Storing the path into the adjacency matrix
             maze[curr_index][next_index], maze[next_index][curr_index] = 1, 1
 
+            # Updating the picture
+            open_path(current_vertex, next_vertex)
+
             # Preparing for the next iteration
             current_vertex = next_vertex
             # Storing the vertex into the stack to retrieve it later if needed
@@ -134,4 +136,6 @@ def maze_maker(nr_cols_rows: int, starting_vertex: Tuple = (0, 0)) -> np.array:
 
     return maze
 
-#maze_maker(300, 300)
+draw_maze_box(50)
+print(maze_maker(50))
+input()
