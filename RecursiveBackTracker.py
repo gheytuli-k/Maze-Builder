@@ -4,8 +4,10 @@ import random
 from typing import Tuple
 
 
-def draw_maze_box(width: int = 400, height: int = 400, wall_width: int = 4, drawing_speed: int = 2) -> None:
+def draw_maze_box(nr_rows: int, width: int = 400, height: int = 400, wall_width: int = 4, drawing_speed: int = 0) -> None:
     """
+    :param nr_rows: Number of rows and column inside the maze
+    :type nr_rows: int
     :param width: The width of the maze
     :type width: int
     :param height: The height of the maze
@@ -38,11 +40,30 @@ def draw_maze_box(width: int = 400, height: int = 400, wall_width: int = 4, draw
 
     maze_object.forward(height)  # Drawing the left wall
 
+    # Drawing all the walls for cells in the maze
+
+    # Drawing the horizantile lines
+    maze_object.left(90)  # Rotating 90 degrees
+    for row in range(1, nr_rows):
+        maze_object.penup()
+        maze_object.goto(-width/2, -height/2 + row*height/nr_rows)
+        maze_object.pendown()
+        maze_object.forward(width)
+
+    # Drawing the vertical lines
+    maze_object.left(90)  # Rotating 90 degrees
+    for column in range(1, nr_rows):
+        maze_object.penup()
+        maze_object.goto(-width/2 + column*width/nr_rows, -height/2)
+        maze_object.pendown()
+        maze_object.forward(height)
+
     turtle.Screen().exitonclick()  # Close the window by clicking on the screen
 
 
 # Call the draw_maze_box function
-#draw_maze_box(400, 400)
+draw_maze_box(30, 600, 600)
+
 
 def index_mapper(point: Tuple, col_size: int) -> int:
     """"
@@ -113,4 +134,4 @@ def maze_maker(nr_cols_rows: int, starting_vertex: Tuple = (0, 0)) -> np.array:
 
     return maze
 
-maze_maker(300, 300)
+#maze_maker(300, 300)
