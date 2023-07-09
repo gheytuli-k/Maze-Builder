@@ -1,6 +1,7 @@
 import turtle
 import numpy as np
 import random
+from typing import Tuple
 
 def draw_maze_box(width: int = 400, height: int = 400, wall_width: int = 4, drawing_speed: int = 2) -> None:
     """
@@ -40,6 +41,17 @@ def draw_maze_box(width: int = 400, height: int = 400, wall_width: int = 4, draw
 
 # Call the draw_maze_box function
 #draw_maze_box(400, 400)
+
+def index_mapper(point: Tuple) -> int:
+    """"
+    :param point: The point that we want to map it to an index
+    :type point: Tuple
+    :return: Index of the mapped point
+    :rtype: int
+    """
+    
+    x, y = point
+    return x * 30 + y
 
 def maze_maker(nr_rows: int, nr_cols: int) -> np.array:
     maze = np.array((nr_rows**2, nr_cols**2)) # Create the maze
