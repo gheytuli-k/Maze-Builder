@@ -1,5 +1,6 @@
 import turtle
 import numpy as np
+import random
 
 def draw_maze_box(width: int = 400, height: int = 400, wall_width: int = 4, drawing_speed: int = 2) -> None:
     """
@@ -41,13 +42,24 @@ def draw_maze_box(width: int = 400, height: int = 400, wall_width: int = 4, draw
 #draw_maze_box(400, 400)
 
 def maze_maker(nr_rows: int, nr_cols: int) -> np.array:
-    maze = np.array((nr_rows, nr_cols)) # Create the maze
+    maze = np.array((nr_rows**2, nr_cols**2)) # Create the maze
     starting_vertex = (0, 0) # The position that the maze would start
     stack = [] # Defining a stack to store vertecies in it
     explored_vertices = set() # A set to make sure not to explore a vertex more than once
     
     current_vertex = starting_vertex
+    explored_vertices.add(current_vertex)
     while True:
-        pass
+        stack.append(current_vertex)
 
-    
+        curr_x, curr_y = current_vertex
+        # Storing all the possible neighbors of the current vertex
+        neighbors = [(curr_x, curr_y+1), (curr_x, curr_y-1), (curr_x+1, curr_y), (curr_x-1, curr_y)]
+
+        # Removing all the neighbors outside the maze
+        neighbors = [(x, y) for (x, y) in neighbors if (0 <= x <= nr_cols) and (0 <= y <= nr_rows) and
+                      ((x, y) not in explored_vertices)]
+        
+        next_vertex = random.choice(neighbors)        
+
+maze_maker(30, 30)
